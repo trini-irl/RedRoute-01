@@ -415,127 +415,166 @@
   aspect-ratio: 0.81;
   max-height: 40rem;
   margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--redroute-pink);
   isolation: isolate;
 }
 
-.rr-hero-photo {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: var(--radius-lg);
-  object-fit: cover;
-  object-position: 50% 46%;
-}
-
-.rr-photo-caption {
+.rr-art-topline {
   position: absolute;
-  bottom: 1.1rem;
-  left: 1.1rem;
+  z-index: 2;
+  top: 1.5rem;
+  right: 1.65rem;
+  left: 1.65rem;
   display: flex;
   align-items: center;
-  gap: 0.72rem;
-  max-width: calc(100% - 2.2rem);
-  padding: 0.72rem 1rem 0.72rem 0.72rem;
-  border: 1px solid color-mix(in oklab, var(--border) 78%, transparent);
-  border-radius: var(--radius);
-  background: color-mix(in oklab, var(--background) 94%, transparent);
-  box-shadow: var(--shadow-soft);
-}
-
-.rr-photo-caption-mark {
-  display: grid;
-  width: 2.6rem;
-  height: 2.6rem;
-  flex: 0 0 auto;
-  place-items: center;
-  border-radius: var(--radius);
-  background: var(--redroute-pink);
-}
-
-.rr-photo-caption-mark .rr-brand-mark {
-  width: 1.1rem;
-  height: 1.4rem;
-}
-
-.rr-photo-caption-kicker,
-.rr-photo-caption-title {
-  display: block;
-}
-
-.rr-photo-caption-kicker {
+  justify-content: space-between;
+  gap: 1rem;
   color: var(--redroute-copy);
-  font-size: 0.62rem;
-  line-height: 1.4;
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.rr-photo-caption-title {
-  margin-top: 0.12rem;
-  color: var(--foreground);
-  font-family: var(--font-editorial);
-  font-size: 1.1rem;
-  line-height: 1.2;
+.rr-art-topline span:last-child {
+  color: var(--primary);
 }
 
-.rr-photo-note {
+.rr-art-route {
   position: absolute;
-  top: 1.5rem;
-  right: -1.45rem;
+  inset: 3.25rem 1.1rem 2.85rem;
+  width: calc(100% - 2.2rem);
+  height: calc(100% - 6.1rem);
+  overflow: visible;
+}
+
+.rr-art-route-track {
+  fill: none;
+  stroke: color-mix(in oklab, var(--redroute-accent) 36%, var(--background));
+  stroke-width: 1.5;
+}
+
+.rr-art-route-path {
+  fill: none;
+  stroke: var(--primary);
+  stroke-dasharray: 2 9;
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+.rr-art-route-node {
+  fill: var(--background);
+  stroke: var(--redroute-accent);
+  stroke-width: 3;
+}
+
+.rr-art-hub {
+  position: absolute;
+  top: 49%;
+  left: 50%;
   display: flex;
-  width: 14rem;
+  width: 9.25rem;
+  height: 9.25rem;
   align-items: center;
-  gap: 0.72rem;
-  padding: 0.8rem 0.9rem;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  transform: translate(-50%, -50%);
+  border: 0.5rem solid var(--redroute-pink);
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: var(--shadow-soft);
+}
+
+.rr-art-hub .rr-brand-mark {
+  width: 2.15rem;
+  height: 2.5rem;
+  color: var(--primary-foreground);
+}
+
+.rr-art-hub > span {
+  color: var(--primary-foreground);
+  font-family: var(--font-editorial);
+  font-size: 0.92rem;
+  font-style: italic;
+}
+
+.rr-art-marker {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.62rem;
+  padding: 0.7rem 0.8rem;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--card);
   box-shadow: var(--shadow-soft);
 }
 
-.rr-photo-note-icon {
+.rr-art-marker--first {
+  top: 34%;
+  left: 0.5rem;
+}
+
+.rr-art-marker--second {
+  right: 0.6rem;
+  bottom: 22%;
+}
+
+.rr-art-marker-number {
   display: grid;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2rem;
+  height: 2rem;
   flex: 0 0 auto;
   place-items: center;
   border-radius: var(--radius);
   background: var(--redroute-pink);
   color: var(--primary);
+  font-size: 0.66rem;
+  font-weight: 700;
 }
 
-.rr-photo-note-icon svg {
-  width: 1rem;
-  height: 1rem;
-}
-
-.rr-photo-note strong,
-.rr-photo-note span:last-child span {
+.rr-art-marker strong,
+.rr-art-marker span:last-child span {
   display: block;
 }
 
-.rr-photo-note strong {
+.rr-art-marker strong {
   color: var(--foreground);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  line-height: 1.35;
-}
-
-.rr-photo-note span:last-child span {
-  margin-top: 0.12rem;
-  color: var(--redroute-copy);
-  font-size: 0.67rem;
   line-height: 1.4;
 }
 
-.rr-hero-index {
-  position: absolute;
-  right: -1.4rem;
-  bottom: 1.45rem;
+.rr-art-marker span:last-child span {
+  margin-top: 0.15rem;
   color: var(--redroute-copy);
   font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  writing-mode: vertical-rl;
+  line-height: 1.4;
+}
+
+.rr-art-footer {
+  position: absolute;
+  right: 1.65rem;
+  bottom: 1.4rem;
+  left: 1.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--redroute-copy);
+  font-size: 0.7rem;
+}
+
+.rr-art-footer-rule {
+  width: 1.25rem;
+  height: 1px;
+  flex: 0 0 auto;
+  background: var(--redroute-accent);
 }
 
 .rr-value-rail {
@@ -1230,10 +1269,6 @@
     gap: 1.3rem;
   }
 
-  .rr-photo-note {
-    right: -0.75rem;
-  }
-
   .rr-join-grid {
     gap: 3rem;
   }
@@ -1318,11 +1353,6 @@
 
   .rr-hero-description {
     font-size: 0.93rem;
-  }
-
-  .rr-photo-note {
-    right: -0.45rem;
-    width: 12rem;
   }
 
   .rr-value-grid {
@@ -1474,31 +1504,6 @@
     width: calc(100% - 0.75rem);
     max-height: none;
     aspect-ratio: 0.9;
-  }
-
-  .rr-photo-note {
-    display: none;
-  }
-
-  .rr-photo-caption {
-    bottom: 0.75rem;
-    left: 0.75rem;
-    max-width: calc(100% - 1.5rem);
-    padding: 0.58rem 0.75rem 0.58rem 0.58rem;
-  }
-
-  .rr-photo-caption-mark {
-    width: 2.2rem;
-    height: 2.2rem;
-  }
-
-  .rr-photo-caption-title {
-    font-size: 1rem;
-  }
-
-  .rr-hero-index {
-    right: -1.1rem;
-    bottom: 0.9rem;
   }
 
   .rr-value-grid {

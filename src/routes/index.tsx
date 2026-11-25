@@ -11,7 +11,6 @@ import {
   Menu,
   Search,
   ShieldCheck,
-  UsersRound,
   X,
 } from "lucide-react";
 
@@ -249,35 +248,52 @@ function RedRouteHome() {
               </p>
             </div>
 
-            <figure className="rr-hero-visual">
-              <img
-                alt="A donor resting comfortably in a welcoming neighborhood donation lounge."
-                className="rr-hero-photo"
-                fetchPriority="high"
-                src="/redroute-donor.png"
-              />
-              <figcaption className="rr-photo-caption">
-                <span className="rr-photo-caption-mark" aria-hidden="true">
-                  <BrandMark />
-                </span>
+            <div
+              aria-label="A symbolic route map connecting neighbors through blood donation"
+              className="rr-hero-visual"
+              role="img"
+            >
+              <div className="rr-art-topline">
+                <span>RedRoute / Community route</span>
+                <span>RR · 01</span>
+              </div>
+              <svg aria-hidden="true" className="rr-art-route" viewBox="0 0 520 500">
+                <path
+                  className="rr-art-route-track"
+                  d="M91 158C120 87 207 51 288 65C373 79 434 149 429 235C425 320 357 383 271 390C188 398 108 352 82 279C67 238 73 199 91 158Z"
+                />
+                <path
+                  className="rr-art-route-path"
+                  d="M91 158C136 174 171 210 206 249C240 287 288 299 331 284C369 271 400 249 429 235"
+                />
+                <circle className="rr-art-route-node" cx="91" cy="158" r="8" />
+                <circle className="rr-art-route-node" cx="288" cy="65" r="8" />
+                <circle className="rr-art-route-node" cx="429" cy="235" r="8" />
+                <circle className="rr-art-route-node" cx="271" cy="390" r="8" />
+              </svg>
+              <div aria-hidden="true" className="rr-art-hub">
+                <BrandMark />
+                <span>Care moves here</span>
+              </div>
+              <div className="rr-art-marker rr-art-marker--first">
+                <span className="rr-art-marker-number">01</span>
                 <span>
-                  <span className="rr-photo-caption-kicker">A more human way to help</span>
-                  <span className="rr-photo-caption-title">Together, closer.</span>
-                </span>
-              </figcaption>
-              <div className="rr-photo-note">
-                <span className="rr-photo-note-icon">
-                  <UsersRound aria-hidden="true" />
-                </span>
-                <span>
-                  <strong>People, not paperwork.</strong>
-                  <span>Community starts here.</span>
+                  <strong>A need, nearby</strong>
+                  <span>Start with community</span>
                 </span>
               </div>
-              <span aria-hidden="true" className="rr-hero-index">
-                RR / 01
-              </span>
-            </figure>
+              <div className="rr-art-marker rr-art-marker--second">
+                <span className="rr-art-marker-number">02</span>
+                <span>
+                  <strong>A thoughtful match</strong>
+                  <span>One step at a time</span>
+                </span>
+              </div>
+              <div className="rr-art-footer">
+                <span aria-hidden="true" className="rr-art-footer-rule" />
+                <span>Good connections are built on care.</span>
+              </div>
+            </div>
           </div>
         </section>
 
