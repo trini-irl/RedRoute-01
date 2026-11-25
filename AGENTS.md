@@ -28,3 +28,5 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+Keep the RedRoute public experience on the existing `/` TanStack route with in-page section anchors; this preserves the requested smooth-scrolling one-page experience without introducing unrequested routes.
