@@ -32,7 +32,7 @@ Screenshots
 Home	Find donors	Become a donor
 Home	Find donors	Become a donor
 
-(Add your screenshots to docs/screenshots/.)
+
 
 Tech Stack
 Layer	Technology
@@ -46,7 +46,7 @@ npm
 Run locally
 bash
 # 1. Clone the repository
-git clone 
+git clone https://github.com/trini-irl/RedRoute-01.git
 cd redroute
 
 # 2. Install dependencies
