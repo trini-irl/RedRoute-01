@@ -1,192 +1,79 @@
-# Redroute Blood Donor Bridge
+RedRoute
 
-Build a visually polished, modern, responsive website called REDROUTE — a blood donor directory and blood donation connection platform.
+A calmer, clearer way to connect people who need blood with donors in their community.
 
-I want you to focus heavily on the visual quality, layout, UI design and user experience. This should look like a real startup product designed by a professional UI/UX designer, not a generic healthcare template or a basic college project.
+Built for CodeClash · Team: Lirli Larila Coders · 
 
-I want a sophisticated, editorial, modern healthcare-tech aesthetic.
+The Problem
 
-# 1. BRAND IDENTITY
+When someone urgently needs blood, the search often starts in scattered group chats and forwarded messages. Information is outdated, hard to verify, and stressful to sort through, and willing donors often don't know where to begin.
 
-Brand name: RedRoute
+Our Solution
 
-Brand personality:
-- Human
-- Trustworthy
-- Modern
-- Warm
-- Minimal
-- Sophisticated
-- Community-driven
+RedRoute is a blood donor directory that makes both sides of that journey simple:
 
-The website should feel like a modern digital platform connecting blood donors with people who need blood.
+People in need can search by area and blood group and see approved community donors at a glance.
+Willing donors can share their interest in under a minute, with no pressure.
+Everyone is protected by a review step: registrations are checked before they appear publicly.
 
-Do not make it look like a hospital website.
+The tone of the product is deliberate: human, reassuring and clear, rather than clinical or alarming.
 
-# 2. EXACT COLOUR PALETTE
+Features
+Feature	What it does
+Find donors	Search by area and blood group. Results show the donor's blood group, neighbourhood and availability.
+Request an introduction	Reach out to a donor through the platform instead of exposing personal details.
+Become a donor	A short registration form: name, email, city/area, PIN code, blood group and availability.
+Review before activation	New registrations are saved and held for review. They are published only after approval.
+Friendly empty states	If nothing matches, users see clear guidance and a one-click Clear search instead of a dead end.
+How it works	A three-step guide: Search nearby → Make a thoughtful ask → Let care move forward.
+Admin review area	Restricted area for reviewing and managing registrations.
+Responsible-use notices	Clear reminders that profiles are samples and that urgent needs should go to local emergency or licensed blood services.
+Screenshots
+Home	Find donors	Become a donor
+Home	Find donors	Become a donor
 
-Use the following colour palette consistently throughout the website.
+(Add your screenshots to docs/screenshots/.)
 
-Primary deep crimson:
-#991B2B
+Tech Stack
+Layer	Technology
+Frontend	React, TypeScript
+Backend	JavaScript (Node.js)
+Data	JSON
+Getting Started
+Prerequisites
+Node.js (v18 or later recommended)
+npm
+Run locally
+bash
+# 1. Clone the repository
+git clone 
+cd redroute
 
-Dark wine for hover states:
-#7D1422
+# 2. Install dependencies
+npm install
 
-Secondary accent red:
-#C83E4D
-
-Warm ivory background:
-#F7F3EE
-
-Muted dusty rose:
-#EAD5D5
-
-Dark ink:
-#242426
-
-Secondary text:
-#77716F
-
-White:
-#FFFFFF
-
-Light border:
-#E8E1DC
-
-Soft pink:
-#F2E5E3
-
-Rules for colours:
-
-- Use deep crimson for important buttons and key visual accents.
-- Do NOT make the entire website red.
-- Use warm ivory as the primary page background.
-- Use white for cards and forms.
-- Use muted rose and soft pink for supporting sections and decorative elements.
-- Use dark ink for text.
-- Use crimson sparingly and strategically.
-- Avoid neon colours.
-- Avoid bright red backgrounds everywhere.
-- Avoid excessive gradients.
-- Maintain good contrast and accessibility.
-
-# 3. TYPOGRAPHY
-
-Use Google Fonts:
-
-Primary heading font: Playfair Display.
-
-Body font: DM Sans.
-
-Use Playfair Display for:
-- Hero heading.
-- Large section headings.
-- Selected editorial headings.
-
-Use DM Sans for:
-- Navigation.
-- Body text.
-- Forms.
-- Buttons.
-- Labels.
-- Cards.
-- Dashboard UI.
-
-Typography should feel editorial, elegant, modern and clean.
-
-Hero headings should be large, with generous spacing and line height.
-
-Avoid overly bold typography everywhere.
-
-# 4. NAVIGATION BAR
-
-Create a clean navbar with:
-
-Left:
-- Minimal RedRoute logo.
-- Use a simple custom abstract droplet/route icon next to the word RedRoute.
-
-Middle:
-- Home.
-- Find Donors.
-- Become a Donor.
-- How It Works.
-
-Right:
-- A subtle "Sign in" or "Admin" entry if appropriate.
-- A primary crimson CTA button "Become a Donor".
-
-Navbar requirements:
-- White or warm ivory background.
-- Sticky navigation.
-- Minimal design.
-- No excessive borders.
-- Responsive mobile menu.
-- Smooth scrolling.
-
-# 5. HERO SECTION
-
-Create a premium editorial split-layout hero.
-
-Background:
-Warm ivory #F7F3EE.
-
-Left side:
-
-Small eyebrow label:
-"THE REDROUTE COMMUNITY"
-
-Large heading:
-
-"One connection.
-One donation.
-A chance at life."
-
-Highlight the word "connection" or "life" using deep crimson.
-
-Use Playfair Display for the heading.
-
-Supporting paragraph:
-
-"Finding a blood donor shouldn't be complicated. RedRoute helps people connect with blood donors in their community, one search at a time."
-
-Buttons:
-
-Primary:
-"Find a Donor"
-
-Secondary:
-"Become a Donor"
-
-The primary button should be deep crimson with white text.
-
-The secondary button should be outlined or text-based with a subtle border.
-
-Add a small reassuring text underneath:
-"Every donor begins with a simple decision."
-
-Right side:
-
-Create a beautiful visual composition
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/b302e4db-b12a-57a0-b079-d7dba99c2649).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+# 3. Start the app
 npm run dev
-```
+
+Then open the local address shown in your terminal .
+
+Privacy & Safety by Design
+
+Blood donation is a sensitive topic, so safety shaped the product from the start:
+
+Sample data only. All profiles in this prototype are fictional.
+No medical claims. RedRoute does not confirm medical eligibility or current availability. Eligibility guidance should always come from a qualified local blood service.
+Approval before publishing. Registrations stay private until reviewed.
+Minimal public details. Listings show only a display name, blood group, general area and availability.
+Not a replacement for hospitals or licensed blood banks. For urgent needs, always contact local emergency or blood services directly.
+Design Approach
+Warm crimson palette with elegant serif headings for a human, trustworthy feel
+Single-page flow: search, registration and guidance in one place
+Clear feedback at every step: confirmation messages and helpful empty states
+Language that is gentle and respectful, e.g. "No pressure. Just a first step."
+Roadmap
+Contact verification for donors
+Distance-based search and map view
+Donor availability reminders
+Hospital and blood bank partnerships for verified requests
+Multi-language support
