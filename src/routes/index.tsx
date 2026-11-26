@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { useEffect, useState, type FormEvent } from "react";
-=======
-import { useMemo, useState, type FormEvent } from "react";
->>>>>>> 0916039e0e6a65895f2875a1ef6c715e3fd58018
+import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -27,10 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-<<<<<<< HEAD
 import { apiRequest } from "@/lib/api";
-=======
->>>>>>> 0916039e0e6a65895f2875a1ef6c715e3fd58018
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -57,7 +50,6 @@ export const Route = createFileRoute("/")({
   component: RedRouteHome,
 });
 
-<<<<<<< HEAD
 type BloodType = "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "O+" | "O-";
 
 type Donor = {
@@ -92,60 +84,6 @@ type AdminRequest = {
 };
 
 const bloodTypes: BloodType[] = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
-=======
-type BloodType = "A+" | "A−" | "B+" | "B−" | "AB+" | "AB−" | "O+" | "O−";
-
-type ExampleDonor = {
-  id: number;
-  name: string;
-  initials: string;
-  bloodType: BloodType;
-  area: string;
-  distance: string;
-  tint: string;
-};
-
-const exampleDonors: ExampleDonor[] = [
-  {
-    id: 1,
-    name: "Asha Mehra",
-    initials: "AM",
-    bloodType: "O+",
-    area: "North Quarter",
-    distance: "2.4 miles away",
-    tint: "rose",
-  },
-  {
-    id: 2,
-    name: "Elliot James",
-    initials: "EJ",
-    bloodType: "A−",
-    area: "Riverside",
-    distance: "3.1 miles away",
-    tint: "ivory",
-  },
-  {
-    id: 3,
-    name: "Mina Alvarez",
-    initials: "MA",
-    bloodType: "B+",
-    area: "Old Town",
-    distance: "4.8 miles away",
-    tint: "dusty",
-  },
-  {
-    id: 4,
-    name: "Noah Bennett",
-    initials: "NB",
-    bloodType: "O−",
-    area: "West End",
-    distance: "5.2 miles away",
-    tint: "pink",
-  },
-];
-
-const bloodTypes: BloodType[] = ["A+", "A−", "B+", "B−", "AB+", "AB−", "O+", "O−"];
->>>>>>> 0916039e0e6a65895f2875a1ef6c715e3fd58018
 
 function BrandMark() {
   return (
@@ -180,7 +118,6 @@ function RedRouteHome() {
   const [requestedDonorId, setRequestedDonorId] = useState<number | null>(null);
   const [registeredName, setRegisteredName] = useState("");
   const [registrationComplete, setRegistrationComplete] = useState(false);
-<<<<<<< HEAD
   const [registrationLoading, setRegistrationLoading] = useState(false);
   const [registrationError, setRegistrationError] = useState("");
   const [matchingDonors, setMatchingDonors] = useState<Donor[]>([]);
@@ -200,10 +137,10 @@ function RedRouteHome() {
   const [adminDonors, setAdminDonors] = useState<AdminDonor[]>([]);
   const [adminRequests, setAdminRequests] = useState<AdminRequest[]>([]);
 
-  async function loadDonors(
+  const loadDonors = useCallback(async (
     cityFilter = location,
     bloodFilter = bloodType,
-  ) {
+  ) => {
     setSearchLoading(true);
     setSearchError("");
     try {
@@ -213,10 +150,11 @@ function RedRouteHome() {
       const data = await apiRequest<{ success: boolean; donors: Donor[] }>(
         `/api/donors${params.size ? `?${params.toString()}` : ""}`,
       );
+      const donorTints = ["rose", "ivory", "dusty", "pink"] as const;
       setMatchingDonors(
         data.donors.map((donor, index) => ({
           ...donor,
-          tint: ["rose", "ivory", "dusty", "pink"][index % 4],
+          tint: donorTints[index % donorTints.length] ?? "rose",
         })),
       );
     } catch (error) {
@@ -226,11 +164,11 @@ function RedRouteHome() {
       setSearchLoading(false);
       setHasSearched(true);
     }
-  }
+  }, [bloodType, location]);
 
   useEffect(() => {
     void loadDonors();
-  }, []);
+  }, [loadDonors]);
 
   async function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -355,32 +293,6 @@ function RedRouteHome() {
       body: JSON.stringify({ status }),
     });
     await loadAdminData();
-=======
-
-  const matchingDonors = useMemo(() => {
-    const locationQuery = location.trim().toLowerCase();
-
-    return exampleDonors.filter((donor) => {
-      const matchesLocation =
-        !locationQuery ||
-        `${donor.area} ${donor.name}`.toLowerCase().includes(locationQuery);
-      const matchesBloodType = bloodType === "all" || donor.bloodType === bloodType;
-
-      return matchesLocation && matchesBloodType;
-    });
-  }, [bloodType, location]);
-
-  function handleSearch(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    document.getElementById("donor-results")?.scrollIntoView({ behavior: "smooth" });
-  }
-
-  function handleRegistration(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const submittedName = new FormData(event.currentTarget).get("name");
-    setRegisteredName(typeof submittedName === "string" ? submittedName.trim() : "");
-    setRegistrationComplete(true);
->>>>>>> 0916039e0e6a65895f2875a1ef6c715e3fd58018
   }
 
   function closeMenu() {
@@ -421,7 +333,6 @@ function RedRouteHome() {
                 Become a Donor <ArrowUpRight aria-hidden="true" />
               </a>
             </Button>
-<<<<<<< HEAD
             <button
               className="rr-admin-button"
               onClick={() => {
@@ -439,8 +350,6 @@ function RedRouteHome() {
             >
               Admin
             </button>
-=======
->>>>>>> 0916039e0e6a65895f2875a1ef6c715e3fd58018
             <Button
               aria-expanded={menuOpen}
               aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -608,7 +517,6 @@ function RedRouteHome() {
 
             <div className="rr-results-heading" id="donor-results">
               <div>
-<<<<<<< HEAD
                 <h3>Active community donors</h3>
                 <p>Approved profiles available for introduction requests</p>
               </div>
@@ -623,28 +531,11 @@ function RedRouteHome() {
                 {searchError}
               </p>
             )}
-=======
-                <h3>Community preview</h3>
-                <p>Example profiles only · not live donor listings</p>
-              </div>
-              <span className="rr-results-count">
-                {matchingDonors.length} {matchingDonors.length === 1 ? "profile" : "profiles"}
-              </span>
-            </div>
-
-            {requestedDonorId !== null && (
-              <p aria-live="polite" className="rr-inline-notice">
-                Introduction preview prepared. No message was sent to a donor.
-              </p>
-            )}
-
->>>>>>> 0916039e0e6a65895f2875a1ef6c715e3fd58018
             {matchingDonors.length > 0 ? (
               <div className="rr-donor-grid">
                 {matchingDonors.map((donor) => (
                   <article className="rr-donor-card" key={donor.id}>
                     <div className={`rr-donor-avatar rr-donor-avatar--${donor.tint}`} aria-hidden="true">
-<<<<<<< HEAD
                       {donor.display_name
                         .split(" ")
                         .map((part) => part[0])
@@ -722,42 +613,6 @@ function RedRouteHome() {
                     setLocation("");
                     setBloodType("all");
                     await loadDonors("", "all");
-=======
-                      {donor.initials}
-                    </div>
-                    <div className="rr-donor-info">
-                      <div className="rr-donor-name-row">
-                        <h4>{donor.name}</h4>
-                        <span className="rr-blood-badge">{donor.bloodType}</span>
-                      </div>
-                      <p className="rr-donor-location">
-                        <MapPin aria-hidden="true" /> {donor.area} <span>·</span> {donor.distance}
-                      </p>
-                      <p className="rr-example-label">Example profile</p>
-                    </div>
-                    <Button
-                      aria-label={`Prepare an introduction to ${donor.name}`}
-                      className="rr-request-button"
-                      onClick={() => setRequestedDonorId(donor.id)}
-                      size="sm"
-                      variant="outline"
-                    >
-                      {requestedDonorId === donor.id ? "Prepared" : "Request an introduction"}
-                    </Button>
-                  </article>
-                ))}
-              </div>
-            ) : (
-              <div className="rr-empty-state">
-                <Search aria-hidden="true" />
-                <h4>No example profiles match those details.</h4>
-                <p>Try another area or blood group to explore the directory preview.</p>
-                <Button
-                  className="rr-clear-search"
-                  onClick={() => {
-                    setLocation("");
-                    setBloodType("all");
->>>>>>> 0916039e0e6a65895f2875a1ef6c715e3fd58018
                   }}
                   size="sm"
                   variant="outline"
@@ -765,21 +620,12 @@ function RedRouteHome() {
                   Clear search
                 </Button>
               </div>
-<<<<<<< HEAD
             ) : null}
 
             <p className="rr-directory-note">
               <ShieldCheck aria-hidden="true" />
               Profiles are fictional or must remain medically unscreened. For urgent needs, contact
               local emergency or blood services directly.
-=======
-            )}
-
-            <p className="rr-directory-note">
-              <ShieldCheck aria-hidden="true" />
-              This preview uses fictional profiles. For urgent needs, contact local emergency or
-              blood services directly.
->>>>>>> 0916039e0e6a65895f2875a1ef6c715e3fd58018
             </p>
           </div>
         </section>
@@ -905,7 +751,6 @@ function RedRouteHome() {
                     />
                   </div>
                   <div className="rr-form-field">
-<<<<<<< HEAD
                     <label htmlFor="donor-pin">PIN code</label>
                     <Input
                       id="donor-pin"
@@ -919,8 +764,6 @@ function RedRouteHome() {
                 </div>
                 <div className="rr-form-row">
                   <div className="rr-form-field">
-=======
->>>>>>> 0916039e0e6a65895f2875a1ef6c715e3fd58018
                     <label htmlFor="donor-blood-type">Blood group</label>
                     <Select name="bloodType" required>
                       <SelectTrigger
@@ -939,7 +782,6 @@ function RedRouteHome() {
                       </SelectContent>
                     </Select>
                   </div>
-<<<<<<< HEAD
                   <div className="rr-form-field">
                     <label htmlFor="donor-availability">Availability</label>
                     <Select name="availability" required>
@@ -977,27 +819,11 @@ function RedRouteHome() {
                     <CheckCircle2 aria-hidden="true" />
                     {registeredName ? `Thank you, ${registeredName}. ` : "Thank you. "}Your
                     registration has been saved and will be reviewed before activation.
-=======
-                </div>
-                <Button className="rr-join-submit" size="lg" type="submit">
-                  {registrationComplete ? "Preview complete" : "Continue as a donor"}
-                  <ArrowRight aria-hidden="true" />
-                </Button>
-                {registrationComplete && (
-                  <p aria-live="polite" className="rr-registration-notice">
-                    <CheckCircle2 aria-hidden="true" />
-                    {registeredName ? `Thank you, ${registeredName}. ` : "Thank you. "}This preview
-                    doesn&apos;t save or share your details.
->>>>>>> 0916039e0e6a65895f2875a1ef6c715e3fd58018
                   </p>
                 )}
                 <p className="rr-form-footnote">
                   Eligibility and donation guidance should always come from a qualified local blood
-<<<<<<< HEAD
                   service. Profiles are published only after approval.
-=======
-                  service. This preview does not publish a donor profile.
->>>>>>> 0916039e0e6a65895f2875a1ef6c715e3fd58018
                 </p>
               </form>
             </div>
@@ -1014,7 +840,6 @@ function RedRouteHome() {
         </section>
       </main>
 
-<<<<<<< HEAD
       {adminOpen && (
         <div className="rr-admin-overlay" role="presentation">
           <section
@@ -1145,8 +970,6 @@ function RedRouteHome() {
         </div>
       )}
 
-=======
->>>>>>> 0916039e0e6a65895f2875a1ef6c715e3fd58018
       <footer className="rr-footer">
         <div className="rr-container rr-footer-inner">
           <a aria-label="RedRoute home" className="rr-brand rr-footer-brand" href="#home">

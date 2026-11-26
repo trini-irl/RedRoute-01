@@ -1677,7 +1677,6 @@
   }
 }
 
-<<<<<<< HEAD
 .rr-admin-button {
   border: 0;
   background: transparent;
@@ -1826,8 +1825,6 @@
   }
 }
 
-=======
->>>>>>> 0916039e0e6a65895f2875a1ef6c715e3fd58018
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

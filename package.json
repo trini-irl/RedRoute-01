@@ -5,11 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-<<<<<<< HEAD
     "dev:backend": "npm --prefix backend run dev",
     "dev:all": "node dev-all.js",
-=======
->>>>>>> 0916039e0e6a65895f2875a1ef6c715e3fd58018
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",

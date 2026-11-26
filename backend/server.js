@@ -15,7 +15,7 @@ const adminRoutes = require("./routes/adminRoutes");
 const app = express();
 const port = Number(process.env.PORT || 5000);
 const production = process.env.NODE_ENV === "production";
-const allowedOrigins = (process.env.FRONTEND_ORIGIN || "http://localhost:8081,http://localhost:8080,http://localhost:5173,http://localhost:3000")
+const allowedOrigins = (process.env.FRONTEND_ORIGIN || "http://localhost:8083,http://localhost:8081,http://localhost:8080,http://localhost:5173,http://localhost:3000")
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);

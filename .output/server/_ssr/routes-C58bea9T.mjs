@@ -5,7 +5,7 @@ import { a as MapPin, c as CircleCheck, d as Check, f as ArrowUpRight, i as Menu
 import { n as clsx, t as cva } from "../_libs/class-variance-authority+clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
 import { a as SelectItemIndicator, c as SelectPortal, d as SelectSeparator$1, f as SelectTrigger$1, i as SelectItem$1, l as SelectScrollDownButton$1, m as SelectViewport, n as SelectContent$1, o as SelectItemText, p as SelectValue$1, r as SelectIcon, s as SelectLabel$1, t as Select$1, u as SelectScrollUpButton$1 } from "../_libs/@radix-ui/react-select+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-CdTCYVwO.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-C58bea9T.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function cn(...inputs) {
@@ -117,7 +117,21 @@ var SelectSeparator = import_react.forwardRef(({ className, ...props }, ref) => 
 	...props
 }));
 SelectSeparator.displayName = SelectSeparator$1.displayName;
-var API_URL = "http://localhost:5000".replace(/\/$/, "");
+var API_URL = ({
+	"BASE_URL": "/",
+	"DEV": false,
+	"MODE": "production",
+	"PROD": true,
+	"SSR": true,
+	"TSS_DEV_SERVER": "false",
+	"TSS_DEV_SSR_STYLES_BASEPATH": "/",
+	"TSS_DEV_SSR_STYLES_ENABLED": "true",
+	"TSS_DISABLE_CSRF_MIDDLEWARE_WARNING": "false",
+	"TSS_INLINE_CSS_ENABLED": "false",
+	"TSS_ROUTER_BASEPATH": "",
+	"TSS_SERVER_FN_BASE": "/_serverFn/",
+	"VITE_API_URL": "http://localhost:5000"
+}["VITE_API_URL"] || "http://localhost:5000").replace(/\/$/, "");
 async function apiRequest(path, options = {}) {
 	let response;
 	try {
@@ -209,7 +223,7 @@ function RedRouteHome() {
 	const [adminLoading, setAdminLoading] = (0, import_react.useState)(false);
 	const [adminDonors, setAdminDonors] = (0, import_react.useState)([]);
 	const [adminRequests, setAdminRequests] = (0, import_react.useState)([]);
-	async function loadDonors(cityFilter = location, bloodFilter = bloodType) {
+	const loadDonors = (0, import_react.useCallback)(async (cityFilter = location, bloodFilter = bloodType) => {
 		setSearchLoading(true);
 		setSearchError("");
 		try {
@@ -217,14 +231,15 @@ function RedRouteHome() {
 			if (cityFilter.trim()) params.set("city", cityFilter.trim());
 			if (bloodFilter !== "all") params.set("bloodGroup", bloodFilter);
 			const data = await apiRequest(`/api/donors${params.size ? `?${params.toString()}` : ""}`);
+			const donorTints = [
+				"rose",
+				"ivory",
+				"dusty",
+				"pink"
+			];
 			setMatchingDonors(data.donors.map((donor, index) => ({
 				...donor,
-				tint: [
-					"rose",
-					"ivory",
-					"dusty",
-					"pink"
-				][index % 4]
+				tint: donorTints[index % donorTints.length] ?? "rose"
 			})));
 		} catch (error) {
 			setSearchError(error instanceof Error ? error.message : "Could not load donor listings.");
@@ -233,10 +248,10 @@ function RedRouteHome() {
 			setSearchLoading(false);
 			setHasSearched(true);
 		}
-	}
+	}, [bloodType, location]);
 	(0, import_react.useEffect)(() => {
 		loadDonors();
-	}, []);
+	}, [loadDonors]);
 	async function handleSearch(event) {
 		event.preventDefault();
 		await loadDonors();
